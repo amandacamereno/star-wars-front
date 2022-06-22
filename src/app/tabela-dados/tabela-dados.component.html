@@ -1,15 +1,16 @@
 
 <p>Table Star Wars!</p>
 <div class="row">
-  <div class="col-sm-13">
-    <h4> Films</h4>
-    <form>
-      <button formaction="submit">Search</button>
-    </form>
+  <div class="col-sm">
+    <button
+      type="button"
+      (click)="showAllFilm()"
+      class="btn btn-warning kz-btn">Films
+    </button>
   </div>
 </div>
-<table mdbTable>
-    <thead>
+<table mdbTable class="table table-bordered table-stripped">
+    <thead class="thead-dark">
       <tr>
         <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
       </tr>
@@ -48,3 +49,28 @@
       </tr>
     </tbody>
   </table>
+<table class="table table-bordered">
+  <thead class="thead-dark">
+  <tr>
+    <th *ngFor="let head of headElementsFilm" scope="col">{{ head }} </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr mdbTableCol *ngFor="let films of listOffilms">
+    <td class="bg-">{{ films.title }}</td>
+    <td>{{ films.episode_id }}</td>
+  </tbody>
+</table>
+<!--<table>-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th *ngFor="let head of headElementsList" scope="col">{{ head }} </th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr mdbTableCol *ngFor="let personagens of listOfPeople">-->
+<!--    <td>{{ people.name }}</td>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+

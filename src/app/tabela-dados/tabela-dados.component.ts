@@ -1,6 +1,9 @@
 import { People, PeopleResult } from './../entities/people/people.model';
 import { Component, OnInit } from '@angular/core';
 import { PeopleService } from '../entities/people/people.service';
+import {Film, FilmResult} from './../entities/films/film.model';
+import {FilmService} from '../entities/films/film.service';
+
 
 @Component({
   selector: 'app-tabela-dados',
@@ -9,6 +12,7 @@ import { PeopleService } from '../entities/people/people.service';
 })
 export class TabelaDadosComponent {
   listOfpeople: People[] = [];
+   listOffilms: Film[] = [];
   headElements: string[] = [
     'name',
     'height',
@@ -24,8 +28,17 @@ export class TabelaDadosComponent {
     'vehicles',
     'starships'
   ];
+headElementsFilm: string[] = [
+    'title',
+    'episode_id'
+  ];
 
-  constructor(private peopleService: PeopleService) { 
+//   headElementsList: string []= [
+//   'name'
+//   ];
+
+
+  constructor(private peopleService: PeopleService, private filmService: FilmService) {
     this.showAllPeople()
   }
 
@@ -33,9 +46,25 @@ export class TabelaDadosComponent {
     this.peopleService.getAllPeople().subscribe(
       (listOfpeople: PeopleResult) => {
         console.log(listOfpeople.results[0])
-        // this.headElements = Object.keys(listOfpeople.results[0])
         this.listOfpeople = listOfpeople.results
+      } );
+      }
+
+showAllFilm() { console.log("chegou aqui")
+    this.filmService.getAllFilms().subscribe(
+      (listOffilms: FilmResult) => {
+        console.log(listOffilms.results[0])
+        this.listOffilms = listOffilms.results
       } );
   }
 
+//   showAllList() {
+//      this.peopleService.getAllPeople().subscribe(
+//        (listOfpeople: PeopleResult) => {
+//          console.log(listOfpeople.results[0])
+//          this.listOfpeople = listOfpeople.results
+//        } );
+//    }
 }
+
+
